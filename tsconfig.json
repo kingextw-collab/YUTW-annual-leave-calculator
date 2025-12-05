@@ -24,6 +24,5 @@
       ]
     },
     "allowImportingTsExtensions": true,
-    "noEmit": true
   }
 }
