@@ -17,10 +17,7 @@ export default defineConfig(({ mode }) => {
         },
         // 確保 plugins 只出現一次
         plugins: [
-            react({
-              // 啟用 React 19 的新轉換
-              jsxRuntime: 'classic',
-            }),
+            react(),
         ],
         define: {
             'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
