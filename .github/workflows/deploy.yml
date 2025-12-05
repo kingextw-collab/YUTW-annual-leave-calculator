@@ -8,6 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 必須授予寫入權限給 actions/checkout
+      pages: write    # 必須授予寫入權限給 pages 服務
+      id-token: write # 某些部署需要 id-token
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
