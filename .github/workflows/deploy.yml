@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 監聽 main 分支的程式碼推送
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 🔧
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 使用一個穩定的 Node 版本
+
+      - name: Install dependencies 📦
+        run: npm install
+
+      - name: Build project 🏗️
+        run: npm run build
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist  # 假設 Vite/React 的構建輸出目錄為 'dist'
+          cname: '' # 如果您沒有自定義域名，請保持空白
