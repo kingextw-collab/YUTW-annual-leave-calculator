@@ -25,7 +25,9 @@ jobs:
         run: npm install
 
       - name: Build project 🏗️
-        run: npm run build -- --base=./
+        # 🌟 替換 run 命令：使用 --minify 和 --emptyOutDir 確保構建輸出
+        # 並且不再重複傳遞 --base=./，因為已經在 vite.config.ts 中設定
+        run: npm run build
 
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
