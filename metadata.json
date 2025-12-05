@@ -1,0 +1,5 @@
+{
+  "name": "國外旅遊補助計算機",
+  "description": "人資工具，用於計算員工國外旅遊補助資格與累積金額，依據週年日與暫停期間判定。",
+  "requestFramePermissions": []
+}
