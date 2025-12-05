@@ -3,15 +3,20 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 監聽 main 分支的程式碼推送
+      - main
+  # 允許手動從 Actions 頁面運行此工作流程
+  workflow_dispatch:
+
+# 配置權限
+permissions:
+  contents: read
+  pages: write # 允許寫入 Pages 內容
+  id-token: write # 允許部署
 
 jobs:
-  build-and-deploy:
+  # 1. 構建 Job
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # 必須授予寫入權限給 actions/checkout
-      pages: write    # 必須授予寫入權限給 pages 服務
-      id-token: write # 某些部署需要 id-token
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -19,21 +24,31 @@ jobs:
       - name: Setup Node.js 🔧
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # 使用一個穩定的 Node 版本
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies 📦
         run: npm install
 
       - name: Build project 🏗️
-        # 🌟 替換 run 命令：使用 --minify 和 --emptyOutDir 確保構建輸出
-        # 並且不再重複傳遞 --base=./，因為已經在 vite.config.ts 中設定
         run: npm run build
 
-      - name: Deploy to GitHub Pages 🚀
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # 假設 Vite/React 的構建輸出目錄為 'dist'
-          cname: '' # 如果您沒有自定義域名，請保持空白
+      - name: Setup Pages 🛠️
+        uses: actions/configure-pages@v5
 
-          
+      - name: Upload artifact ⬆️
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # 上傳 dist 資料夾內容
+
+  # 2. 部署 Job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # 確保在構建完成後才執行
+    steps:
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4
