@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     // 2. return 語句必須返回一個單一的配置物件
     return {
         // 🌟 修正後的 base 屬性放在這裡 🌟
-        base: './', 
+        base: '/YUTW-annual-leave-calculator/',
         
         server: {
             port: 3000,
