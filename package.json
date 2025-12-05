@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    // 🌟 修正後的 build 命令：添加 --force 以防類型檢查中斷
     "build": "vite build --force", 
     "preview": "vite preview"
   },
