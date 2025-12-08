@@ -63,10 +63,10 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-y-8 lg:gap-x-8">
           
-          {/* Left Column: Inputs */}
-          <div className="lg:col-span-4 space-y-6">
+          {/* Left Column: Inputs & Info */}
+          <div className="w-full lg:w-4/12 space-y-6"> 
              <InputSection 
                 inputs={inputs} 
                 setInputs={setInputs} 
@@ -90,7 +90,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Right Column: Results */}
-          <div className="lg:col-span-8">
+          <div className="w-full lg:w-8/12">
             <ResultsSection result={result} />
           </div>
           
