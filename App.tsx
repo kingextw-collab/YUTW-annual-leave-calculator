@@ -63,7 +63,7 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Left Column: Inputs */}
           <div className="lg:col-span-4 space-y-6">
@@ -74,7 +74,7 @@ const App: React.FC = () => {
              />
              
              {/* Info Box */}
-             <div className="bg-blue-50 rounded-xl p-6 text-sm text-blue-800 border border-blue-100">
+             <div className="bg-blue-50 rounded-xl p-6 text-sm text-blue-800 border border-blue-100 overflow-hidden">
                 <h4 className="font-semibold mb-2">補助規範與邏輯</h4>
                 <ul className="list-disc list-inside space-y-1 opacity-80 mb-4">
                     <li>滿 1~2 年：$10,000</li>
